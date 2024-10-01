@@ -1,0 +1,73 @@
+import itertools
+
+1. define the epitopes
+epitopes = {
+    "CTL": [
+        "#Add your CTL sequences here"
+    ],
+    "HTL": [
+        "#Add your HTL sequences here"
+    ],
+    "Bcell": [
+        "#Add your B cell epitope sequences here"
+    ]
+}
+
+2. define linkers
+linkers = {
+    "CTL_CTL": "Add linker sequence to join CTL epitopes together",
+    "CTL_HTL": "Add linker sequence to join CTL to HTL epitopes",
+    "HTL_HTL": "Add linker sequence to join HTL epitopes together",
+    "HTL_Bcell": "Add linker sequence to join HTL to B cell epitopes",
+    "Bcell_Bcell": "Add linker sequence to join Bcell epitopes together",
+    "Bcell_Adjuvant": "Add linker sequence to join Bcell epitopes to Adjuvant",
+    "Adjuvant_Adjuvant": "Add linker sequences to join Adjuvants",
+    "Adjuvant_CTL": "Add linker sequence to join Adjuvant to CTL epitopes",
+    "Histidine_Tag": "HHHHHH" Histadine Tag for C terminal
+}
+
+3. define the adjuvants used to generate vaccine construct
+adjuvants = [
+    "Add ajuvant(s) here"
+]
+
+
+def generate_constructs(epitopes, linkers, adjuvants):
+    constructs = []
+
+4. introduce permutation
+    ctl_permutations = list(itertools.permutations(epitopes["CTL"]))
+    htl_permutations = list(itertools.permutations(epitopes["HTL"]))
+    bcell_permutations = list(itertools.permutations(epitopes["Bcell"]))
+
+5. construct vaccine
+    for ctl in ctl_permutations:
+        for htl in htl_permutations:
+            for bcell in bcell_permutations:
+                construct = (
+                        adjuvants[0] +
+                        linkers["Adjuvant_Adjuvant"] +
+                        adjuvants[1] +
+                        linkers["Adjuvant_CTL"] +
+                        linkers["CTL_CTL"].join(ctl) +
+                        linkers["CTL_HTL"] +
+                        linkers["HTL_HTL"].join(htl) +
+                        linkers["HTL_Bcell"] +
+                        linkers["Bcell_Bcell"].join(bcell) +
+                        linkers["Bcell_Adjuvant"] +
+                        adjuvants[2] +
+                        linkers["Histidine_Tag"]
+                )
+                constructs.append(construct)
+
+    return constructs
+
+6. save vaccine constructs as FASTA format
+vaccine_constructs = generate_constructs(epitopes, linkers, adjuvants)
+
+with open("file_name.fasta", "w") as fasta_file:
+    for i, construct in enumerate(vaccine_constructs):
+        fasta_file.write(f">construct {i + 1}\n")
+        fasta_file.write(f"{construct}\n")
+
+print(f"Total number of constructs: {len(vaccine_constructs)}")
