@@ -4,7 +4,7 @@ This Python script generates multi-epitope vaccine constructs by combining permu
 If you use this code in your research and publish results based on it, please cite the following article:
 
 "Reverse vaccinology-based design of multivalent multiepitope mRNA vaccines targeting key viral proteins of Herpes Simplex Virus Type-2"
-NS Suneesh1,2Kishore  DhotreKishore Dhotre3Pratik  MahajanPratik Mahajan1Debashree  DassDebashree Dass1Anwesha  BanerjeeAnwesha Banerjee1Nikhat  J SiddiqiNikhat J Siddiqi4Abdul  MalikAbdul Malik5Manali  JoshiManali Joshi6Abdul  Arif KhanAbdul Arif Khan1,2Vijay  NemaVijay Nema1,2Anupam  MukherjeeAnupam Mukherjee1,2*
+NS Suneesh, Kishore  Dhotre, Pratik  Mahajan, Debashree  Dass, Anwesha  Banerjee, Nikhat  J Siddiqi, Abdul  Malik, Manali  Joshi, Abdul  Arif Khan, Vijay  Nema, Anupam  Mukherjee*
 
 Frontiers in Immunology. Section: Systems Immunology
 
